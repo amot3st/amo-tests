@@ -5,6 +5,7 @@ jobs:
   build:
     executor:
       name: win/default
+      size: "medium"
     working_directory:  ~/test-changes/
 
     steps:
