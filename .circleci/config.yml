@@ -23,7 +23,7 @@ jobs:
           name: Run tests
           environment:
             MOZ_HEADLESS: 1
-            PYTEST_ADDOPTS: -n 4 --reruns 1
+            PYTEST_ADDOPTS: -n 4
           command: pytest test_search.py::test_search_suggestion_term_is_higher --driver Firefox --variables stage.json
           no_output_timeout: 15m
       - store_artifacts:
