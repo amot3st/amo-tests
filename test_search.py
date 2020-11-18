@@ -58,13 +58,12 @@ def test_esc_key_closes_suggestion_list(base_url, selenium, variables):
             'AutoSearchInput-suggestions-list')
 
 
-@pytest.mark.skip
+@pytest.mark.skip(reason="this test requires more optimization")
 @pytest.mark.nondestructive
 def test_long_terms_dont_break_suggestions(base_url, selenium):
     page = Home(selenium, base_url).open()
     term = 'videodo'
     suggestions = page.search.search_for(term, execute=False)
-    # Sleep to let autocomplete update.
     term_max_len = 33
     suggestion_names = [item.name for item in suggestions]
     for suggestion_name in suggestion_names:
@@ -131,6 +130,7 @@ def test_recommended_icon_is_displayed(base_url, selenium, variables):
     assert 'Recommended' in suggestions[0].promoted_icon
 
 
+@pytest.mark.desktop_only
 @pytest.mark.nondestructive
 def test_selected_result_is_highlighted(base_url, selenium, variables):
     page = Home(selenium, base_url).open()

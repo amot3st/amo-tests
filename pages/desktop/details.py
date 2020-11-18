@@ -29,6 +29,8 @@ class Detail(Base):
 
     @property
     def button_text(self):
+        self.wait.until(expected.invisibility_of_element_located(
+            (By.CLASS_NAME, 'AMInstallButton-loading-button')))
         return self.find_element(*self._install_button_locator).text
 
     @property
