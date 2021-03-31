@@ -5,7 +5,7 @@ jobs:
   build:
     executor:
       name: win/default
-    working_directory:  ~/test-changes/
+    working_directory:  ~/amo-tests/
 
     steps:
       - checkout
@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Run tests
           environment:
-          MOZ_HEADLESS: 1
+            MOZ_HEADLESS: 1
           command: pytest test_search.py::test_search_suggestion_term_is_higher --driver Firefox --variables stage.json
           no_output_timeout: 30m
       - store_artifacts:
