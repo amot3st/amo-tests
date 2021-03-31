@@ -2,9 +2,10 @@ version: 2.1
 orbs:
   win: circleci/windows@2.2.0
 jobs:
-  build:
+  test:
     executor:
       name: win/default
+      size: "medium"
     working_directory:  ~/amo-tests/
 
     steps:
@@ -22,12 +23,12 @@ jobs:
           name: Run tests
           environment:
             MOZ_HEADLESS: 1
-          command: pytest test_search.py::test_search_suggestion_term_is_higher --driver Firefox --variables stage.json
-          no_output_timeout: 30m
+            PYTEST_ADDOPTS: -n 2
+          command: pytest test_search.py::test_search_suggestion_term_is_higher --driver Firefox --variables stage.json --html=ui-test-release.html --self-contained-html
+          no_output_timeout: 20m
       - store_artifacts:
           path: ui-test-release.html
 workflows:
-  # version: 2.1
-  build_and_test:
+  commit_workflow:
     jobs:
-        - build
+      - test
