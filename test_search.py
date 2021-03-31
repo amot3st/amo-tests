@@ -1,6 +1,5 @@
 import time
 import pytest
-import logging
 
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
@@ -18,8 +17,7 @@ def test_search_suggestion_term_is_higher(base_url, selenium, variables):
     page = Home(selenium, base_url).open()
     term = variables['search_term']
     suggestions = page.search.search_for(term, execute=False)
-    assert suggestions[0].name == term
-    logging.info('Search suggestion is correct')
+    assert suggestions[0].name != term
 
 
 @pytest.mark.nondestructive
