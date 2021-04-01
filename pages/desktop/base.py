@@ -127,6 +127,10 @@ class Header(Region):
         action.perform()
         self.wait.until(lambda s: self.is_element_displayed(
             *self._login_locator))
+        
+    @property
+    def user_display_name(self):
+        return self.find_element(*self._user_locator)    
 
     def more_menu(self, item=None):
         menu = self.find_element(*self._more_dropdown_locator)
