@@ -47,11 +47,13 @@ class Base(Page):
         return self.header.SearchBox(self)
 
     # this is WIP
-    def login(self, variables):
+    def login(self, user):
         login_page = self.header.click_login()
-        time.sleep(1)
-        login_page.login_regular_user(variables)
-        self.selenium.get(self.base_url)
+        self.wait.until(EC.visibility_of_element_located((
+            By.NAME, 'email')))
+        login_page.account(user)
+        # wait for transition between FxA page and AMO
+        self.wait.until(EC.url_contains('addons'))
         self.wait.until(lambda _: self.logged_in)
 
     def logout(self):
