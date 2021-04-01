@@ -5,6 +5,14 @@ from pages.desktop.search import Search
 
 # Tests covering the homepage header
 @pytest.mark.nondestructive
+def test_sign_in(selenium, base_url):
+    page = Home(selenium, base_url).open()
+    user = 'regular_user'
+    page.login(user)
+    assert user in page.header.user_display_name.text
+
+
+@pytest.mark.nondestructive
 def test_click_header_explore(base_url, selenium):
     page = Home(selenium, base_url).open()
     page.header.click_explore()
