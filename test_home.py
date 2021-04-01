@@ -9,7 +9,7 @@ def test_sign_in(selenium, base_url):
     page = Home(selenium, base_url).open()
     user = 'regular_user'
     page.login(user)
-    assert user in page.header.user_display_name.text
+    assert 'hhft554' in page.header.user_display_name.text
 
 
 @pytest.mark.nondestructive
