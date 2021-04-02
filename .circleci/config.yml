@@ -32,7 +32,6 @@ jobs:
       - slack/notify:
           event: fail
           template: basic_fail_1
-            # When there is a successful deployment, send a notification with a different template.
       - slack/notify:
           event: pass
           template: success_tagged_deploy_1
@@ -50,13 +49,3 @@ workflows:
           requires:
             - test
             - slack/on-hold
-  scheduled_stage_release_run:
-    triggers:
-      - schedule:
-          # the workflow runs each Wednesday at 05:00 UTC
-          cron: "0 5 * * 3"
-          filters:
-            branches:
-              only: master
-    jobs:
-      - test
