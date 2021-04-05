@@ -39,14 +39,8 @@ workflows:
   commit_workflow:
     jobs:
       - test
-          context: slack-secrets
-      - slack/on-hold:
+      - slack/notify:
           context:
             - slack-secrets
           requires:
             - test
-      - pause_workflow:
-          type: approval
-          requires:
-            - test
-            - slack/on-hold
