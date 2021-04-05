@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   win: circleci/windows@2.2.0
+  slack: circleci/slack@4.0
 jobs:
   test:
     executor:
@@ -24,11 +25,27 @@ jobs:
           environment:
             MOZ_HEADLESS: 1
             PYTEST_ADDOPTS: -n 2
-          command: pytest test_search.py::test_search_suggestion_term_is_higher --driver Firefox --variables stage.json
-          no_output_timeout: 20m
+          command: pytest test_home.py::test_click_header_explore --driver Firefox --variables stage.json
+          no_output_timeout: 30m
       - store_artifacts:
           path: ui-test-release.html
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
 workflows:
   commit_workflow:
     jobs:
       - test
+      - slack/on-hold:
+          context:
+            - slack-secrets
+          requires:
+            - test
+      - pause_workflow:
+          type: approval
+          requires:
+            - test
+            - slack/on-hold
