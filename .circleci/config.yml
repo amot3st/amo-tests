@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   win: circleci/windows@2.2.0
-  slack: circleci/slack@4.0
+  slack: circleci/slack@4.3.3
 jobs:
   test:
     executor:
@@ -30,6 +30,7 @@ jobs:
       - store_artifacts:
           path: ui-test-release.html
       - slack/notify:
+          channel: 'C01SUNKTM9V'
           custom: |
             {
               "blocks": [
