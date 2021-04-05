@@ -38,9 +38,5 @@ jobs:
 workflows:
   commit_workflow:
     jobs:
-      - test
-      - slack/notify:
-          context:
-            - slack-secrets
-          requires:
-            - test
+      - test:
+          context: slack-secrets
