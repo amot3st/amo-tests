@@ -30,6 +30,7 @@ jobs:
       - store_artifacts:
           path: ui-test-release.html
       - slack/notify:
+          shell: bash.exe
           channel: 'C01SUNKTM9V'
           template: success_tagged_deploy_1
           event: always
