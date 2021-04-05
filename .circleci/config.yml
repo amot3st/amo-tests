@@ -39,6 +39,7 @@ workflows:
   commit_workflow:
     jobs:
       - test
+          context: slack-secrets
       - slack/on-hold:
           context:
             - slack-secrets
