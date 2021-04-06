@@ -34,33 +34,18 @@ jobs:
           channel: 'C01SUNKTM9V'
           custom: |
             {
-            	"blocks": [
-            		{
-            			"type": "section",
-            			"text": {
-            				"type": "mrkdwn",
-            				"text": "Current Job: $CIRCLE_JOB"
-            			}
-            		},
-            		{
-            			"type": "section",
-            			"text": {
-            				"type": "mrkdwn",
-            				"text": ":white_check_mark: AMO Sanity run competed successfully"
-            			},
-            			"accessory": {
-            				"type": "button",
-            				"text": {
-            					"type": "plain_text",
-            					"text": "View",
-            					"emoji": true
-            				},
-            				"value": "click-me",
-            				"url": "https://app.circleci.com/pipelines/github/amot3st",
-            				"action_id": "button-action"
-            			}
-            		}
-            	]
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
             }
           event: pass
 workflows:
