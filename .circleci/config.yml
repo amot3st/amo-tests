@@ -32,7 +32,7 @@ jobs:
           path: ui-test-release.html
       - slack/notify:
           channel: 'C01SUNKTM9V'
-          custom:
+          custom: |
             {
               "blocks": [
                 {
