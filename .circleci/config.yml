@@ -32,7 +32,21 @@ jobs:
           path: ui-test-release.html
       - slack/notify:
           channel: 'C01SUNKTM9V'
-          template: success_tagged_deploy_1
+          custom:
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "Test template",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }            
           event: pass
 workflows:
   commit_workflow:
