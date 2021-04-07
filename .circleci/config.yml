@@ -22,6 +22,9 @@ jobs:
           name: Install Firefox
           command: choco install firefox-nightly --pre
       - run:
+          name: "Print an env var stored in the Project"
+          command: echo ${REGULAR_USER_EMAIL}
+      - run:
           name: Run tests
           environment:
             MOZ_HEADLESS: 1
@@ -40,7 +43,7 @@ jobs:
                   "fields": [
                     {
                       "type": "plain_text",
-                      "text": "Test template",
+                      "text": "Test_template",
                       "emoji": true
                     }
                   ]
