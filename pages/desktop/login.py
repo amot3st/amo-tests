@@ -45,6 +45,7 @@ class Login(Base):
     def account(self, user):
         if user == 'regular_user':
             self.fxa_login(self.REGULAR_USER_EMAIL, self.REGULAR_USER_PASSWORD)
+            print(self.REGULAR_USER_EMAIL)
         elif user == 'admin':
             self.fxa_login(self.ADMIN_USER_EMAIL, self.ADMIN_USER_PASSWORD)
 
